@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Hostal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-intro {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-content p {
+            color: #555;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .story-image {
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-content h3 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .story-content p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .values-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .value-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .team-photo {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+
+        .team-info {
+            padding: 1.5rem;
+        }
+
+        .team-info h3 {
+            color: #333;
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .team-info p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .mission-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card {
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .mission-card h3 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mission-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .cta-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .story-grid,
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+
+            .story-image {
+                height: 250px;
+                font-size: 2.5rem;
+            }
+
+            .team-photo {
+                height: 200px;
+                font-size: 3rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h2>Hostal System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="mess.html">Mess</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                <li><a href="signup.html" class="nav-signup">Sign Up</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>About Us</h1>
+            <p>Discover our story and commitment to providing the best hostal experience</p>
+        </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="about-intro">
+        <div class="container">
+            <div class="about-content">
+                <h2>Welcome to Hostal System</h2>
+                <p>We are more than just a place to stay – we're your home away from home. Established with a vision to provide comfortable, affordable, and secure accommodation, we have been serving students, professionals, and travelers for years.</p>
+                <p>Our commitment to excellence, combined with our warm hospitality, has made us one of the most trusted names in hostal accommodation. We understand the challenges of being away from home, and we strive to create an environment that feels welcoming, safe, and comfortable.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="story-section">
+        <div class="container">
+            <h2 class="section-title">Our Story</h2>
+            <div class="story-grid">
+                <div class="story-image">
+                    🏢
+                </div>
+                <div class="story-content">
+                    <h3>Building Dreams Since 2015</h3>
+                    <p>What started as a small accommodation facility with just 10 rooms has grown into a thriving community of residents. Our journey began with a simple mission: to provide quality living spaces at affordable rates.</p>
+                    <p>Over the years, we've expanded our facilities, improved our amenities, and most importantly, built lasting relationships with thousands of residents who have made our hostal their home.</p>
+                    <p>Today, we're proud to offer modern, comfortable accommodations with all the amenities you need for a pleasant stay, whether you're a student pursuing your education or a professional building your career.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community</h3>
+                    <p>We foster a sense of belonging and create a supportive community where residents feel connected and valued.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💯</div>
+                    <h3>Quality</h3>
+                    <p>We maintain the highest standards in cleanliness, comfort, and service to ensure a premium living experience.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔐</div>
+                    <h3>Safety</h3>
+                    <p>Your security is our priority. We implement comprehensive safety measures to provide peace of mind.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💚</div>
+                    <h3>Integrity</h3>
+                    <p>We operate with transparency and honesty, building trust through our actions and commitments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Our Achievements</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label">Years of Service</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2000+</span>
+                    <span class="stat-label">Happy Residents</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Rooms Available</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Satisfaction Rate</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-section">
+        <div class="container">
+            <h2 class="section-title">Mission & Vision</h2>
+            <div class="mission-vision">
+                <div class="mission-card">
+                    <h3><span>🎯</span> Our Mission</h3>
+                    <p>To provide comfortable, affordable, and secure accommodation that feels like home. We strive to create a supportive environment where residents can thrive, focus on their goals, and build lasting connections within a vibrant community.</p>
+                </div>
+                <div class="mission-card">
+                    <h3><span>🌟</span> Our Vision</h3>
+                    <p>To be the most trusted and preferred hostal accommodation provider, known for our exceptional service, modern facilities, and commitment to resident satisfaction. We envision creating communities that nurture personal and professional growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">👨‍💼</div>
+                    <div class="team-info">
+                        <h3>John Anderson</h3>
+                        <div class="team-role">General Manager</div>
+                        <p>With over 15 years of experience in hospitality, John leads our team with dedication and vision.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">👩‍💼</div>
+                    <div class="team-info">
+                        <h3>Sarah Mitchell</h3>
+                        <div class="team-role">Operations Manager</div>
+                        <p>Sarah ensures smooth operations and maintains our high standards of service excellence.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">👨‍🍳</div>
+                    <div class="team-info">
+                        <h3>David Chen</h3>
+                        <div class="team-role">Head Chef</div>
+                        <p>David crafts delicious and nutritious meals that make our dining experience exceptional.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">👩‍💻</div>
+                    <div class="team-info">
+                        <h3>Emily Rodriguez</h3>
+                        <div class="team-role">Resident Services</div>
+                        <p>Emily is dedicated to ensuring all residents have a comfortable and enjoyable stay.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Join Our Community?</h2>
+            <p>Discover why thousands of residents have chosen us as their home away from home</p>
+            <div class="cta-buttons">
+                <a href="rooms.html" class="cta-btn cta-btn-primary">View Rooms</a>
+                <a href="contact.html" class="cta-btn cta-btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hostal System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

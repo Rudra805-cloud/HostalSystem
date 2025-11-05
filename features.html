@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Hostal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .features-detailed {
+            padding: 5rem 0;
+        }
+
+        .feature-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+            align-items: center;
+        }
+
+        .feature-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .feature-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .feature-image {
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-content h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-content p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .feature-list li::before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .additional-features {
+            background: #f8f9fa;
+            padding: 5rem 0;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .amenity-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .amenity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .amenity-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .amenity-card h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .feature-item {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .feature-image {
+                height: 250px;
+                font-size: 2rem;
+            }
+
+            .amenities-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h2>Hostal System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html" class="active">Features</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="mess.html">Mess</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                <li><a href="signup.html" class="nav-signup">Sign Up</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Features</h1>
+            <p>Everything you need for a comfortable stay</p>
+        </div>
+    </section>
+
+    <!-- Detailed Features -->
+    <section class="features-detailed">
+        <div class="container">
+            <!-- Feature 1 -->
+            <div class="feature-item">
+                <div class="feature-image">
+                    🏠
+                </div>
+                <div class="feature-content">
+                    <h2>Comfortable Rooms</h2>
+                    <p>Our rooms are designed with your comfort in mind. Each room is equipped with modern amenities and thoughtfully arranged to provide a cozy and relaxing environment.</p>
+                    <ul class="feature-list">
+                        <li>Spacious and well-ventilated rooms</li>
+                        <li>Comfortable beds with quality mattresses</li>
+                        <li>Study desk and chair</li>
+                        <li>Adequate storage space</li>
+                        <li>Natural lighting and modern fixtures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="feature-item">
+                <div class="feature-image">
+                    🍽️
+                </div>
+                <div class="feature-content">
+                    <h2>Dining Facilities</h2>
+                    <p>Enjoy nutritious and delicious meals prepared by our experienced chefs. We offer a variety of cuisines to cater to different tastes and dietary requirements.</p>
+                    <ul class="feature-list">
+                        <li>Three meals a day included</li>
+                        <li>Vegetarian and non-vegetarian options</li>
+                        <li>Clean and hygienic kitchen</li>
+                        <li>Special dietary accommodations</li>
+                        <li>Spacious dining area</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-item">
+                <div class="feature-image">
+                    📶
+                </div>
+                <div class="feature-content">
+                    <h2>High-Speed WiFi</h2>
+                    <p>Stay connected with our high-speed internet connectivity available throughout the hostal premises. Perfect for students and professionals who need reliable internet access.</p>
+                    <ul class="feature-list">
+                        <li>24/7 high-speed internet</li>
+                        <li>WiFi coverage in all areas</li>
+                        <li>Dedicated bandwidth for each room</li>
+                        <li>Backup internet connection</li>
+                        <li>Tech support available</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-item">
+                <div class="feature-image">
+                    🔒
+                </div>
+                <div class="feature-content">
+                    <h2>24/7 Security</h2>
+                    <p>Your safety is our top priority. We have comprehensive security measures in place to ensure a safe and secure environment for all our residents.</p>
+                    <ul class="feature-list">
+                        <li>Round-the-clock security personnel</li>
+                        <li>CCTV surveillance</li>
+                        <li>Secure entry and exit points</li>
+                        <li>Visitor management system</li>
+                        <li>Emergency response protocols</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Amenities -->
+    <section class="additional-features">
+        <div class="container">
+            <h2 class="section-title">Additional Amenities</h2>
+            <div class="amenities-grid">
+                <div class="amenity-card">
+                    <div class="amenity-icon">🧺</div>
+                    <h3>Laundry Service</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">❄️</div>
+                    <h3>Air Conditioning</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">🅿️</div>
+                    <h3>Parking Space</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">🧹</div>
+                    <h3>Housekeeping</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">💡</div>
+                    <h3>Power Backup</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">🚿</div>
+                    <h3>Hot Water</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">📺</div>
+                    <h3>Common TV Room</h3>
+                </div>
+                <div class="amenity-card">
+                    <div class="amenity-icon">🎮</div>
+                    <h3>Recreation Area</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience Premium Living?</h2>
+            <p>Book your room today and enjoy all these amazing features</p>
+            <div class="cta-buttons">
+                <a href="rooms.html" class="cta-btn cta-btn-primary">View Rooms</a>
+                <a href="index.html#contact" class="cta-btn cta-btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hostal System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

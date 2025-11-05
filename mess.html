@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mess Details - Hostal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .today-date {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .timing-overview {
+            background: white;
+            padding: 3rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .timing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .timing-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .timing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .timing-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .timing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timing-card .time {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .timing-card .status {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .timing-card .status.open {
+            background: #2ed573;
+        }
+
+        .timing-card .status.closed {
+            background: #ff4757;
+        }
+
+        .menu-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .menu-tab {
+            padding: 1rem 2.5rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            color: #666;
+        }
+
+        .menu-tab:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .menu-tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        .menu-content {
+            display: none;
+        }
+
+        .menu-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .menu-header h2 {
+            color: #667eea;
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .menu-time {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            text-align: right;
+        }
+
+        .menu-time .label {
+            font-size: 0.9rem;
+            color: #666;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .menu-time .time {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .menu-items {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .menu-category {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+
+        .menu-category h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .menu-category ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-category li {
+            padding: 0.8rem 0;
+            color: #555;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .menu-category li::before {
+            content: "🍽️";
+            font-size: 1.2rem;
+        }
+
+        .dietary-badges {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .badge.veg {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge.non-veg {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge.special {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .weekly-menu {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .weekly-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .day-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .day-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .day-card.today {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-color: #667eea;
+        }
+
+        .day-card h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .day-card .day-label {
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .meal-preview {
+            margin-bottom: 1rem;
+        }
+
+        .meal-preview h4 {
+            color: #333;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meal-preview p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .info-section {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-card li {
+            padding: 0.5rem 0;
+            color: #555;
+            display: flex;
+            align-items: start;
+            gap: 0.5rem;
+        }
+
+        .info-card li::before {
+            content: "✓";
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .menu-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .menu-header h2 {
+                font-size: 2rem;
+            }
+
+            .menu-time {
+                text-align: center;
+            }
+
+            .menu-tabs {
+                flex-direction: column;
+            }
+
+            .menu-tab {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h2>Hostal System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="mess.html" class="active">Mess</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                <li><a href="signup.html" class="nav-signup">Sign Up</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Mess Details</h1>
+            <p>Delicious & Nutritious Meals Every Day</p>
+            <div class="today-date" id="todayDate"></div>
+        </div>
+    </section>
+
+    <!-- Timing Overview -->
+    <section class="timing-overview">
+        <div class="container">
+            <div class="timing-grid">
+                <div class="timing-card">
+                    <div class="timing-icon">🌅</div>
+                    <h3>Breakfast</h3>
+                    <p>Start your day right</p>
+                    <div class="time">7:00 AM - 9:30 AM</div>
+                    <div class="status" id="breakfastStatus">Closed</div>
+                </div>
+                <div class="timing-card">
+                    <div class="timing-icon">☀️</div>
+                    <h3>Lunch</h3>
+                    <p>Healthy midday meal</p>
+                    <div class="time">12:00 PM - 2:30 PM</div>
+                    <div class="status" id="lunchStatus">Closed</div>
+                </div>
+                <div class="timing-card">
+                    <div class="timing-icon">🌙</div>
+                    <h3>Dinner</h3>
+                    <p>End your day deliciously</p>
+                    <div class="time">7:00 PM - 9:30 PM</div>
+                    <div class="status" id="dinnerStatus">Closed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Today's Menu -->
+    <section class="menu-section">
+        <div class="container">
+            <h2 class="section-title">Today's Menu</h2>
+            
+            <div class="menu-tabs">
+                <button class="menu-tab active" onclick="showMenu('breakfast')">
+                    🌅 Breakfast
+                </button>
+                <button class="menu-tab" onclick="showMenu('lunch')">
+                    ☀️ Lunch
+                </button>
+                <button class="menu-tab" onclick="showMenu('dinner')">
+                    🌙 Dinner
+                </button>
+            </div>
+
+            <!-- Breakfast Menu -->
+            <div class="menu-content active" id="breakfast-menu">
+                <div class="menu-card">
+                    <div class="menu-header">
+                        <h2>🌅 Breakfast</h2>
+                        <div class="menu-time">
+                            <span class="label">Serving Time</span>
+                            <span class="time">7:00 AM - 9:30 AM</span>
+                        </div>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-category">
+                            <h3>🥖 Breads & Cereals</h3>
+                            <ul>
+                                <li>Whole Wheat Bread (4 slices)</li>
+                                <li>Butter & Jam</li>
+                                <li>Corn Flakes with Milk</li>
+                                <li>Oatmeal (Optional)</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🍳 Main Course</h3>
+                            <ul>
+                                <li>Scrambled Eggs / Boiled Eggs (2 pcs)</li>
+                                <li>Vegetable Upma</li>
+                                <li>Aloo Paratha with Curd</li>
+                                <li>Poha (Flattened Rice)</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🥤 Beverages</h3>
+                            <ul>
+                                <li>Tea / Coffee</li>
+                                <li>Fresh Orange Juice</li>
+                                <li>Milk (Hot / Cold)</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🍎 Fruits</h3>
+                            <ul>
+                                <li>Seasonal Fresh Fruits</li>
+                                <li>Banana</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dietary-badges">
+                        <span class="badge veg">🟢 Vegetarian Available</span>
+                        <span class="badge non-veg">🔴 Non-Veg Available</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lunch Menu -->
+            <div class="menu-content" id="lunch-menu">
+                <div class="menu-card">
+                    <div class="menu-header">
+                        <h2>☀️ Lunch</h2>
+                        <div class="menu-time">
+                            <span class="label">Serving Time</span>
+                            <span class="time">12:00 PM - 2:30 PM</span>
+                        </div>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-category">
+                            <h3>🍚 Rice & Breads</h3>
+                            <ul>
+                                <li>Steamed Basmati Rice</li>
+                                <li>Roti / Chapati (5 pcs)</li>
+                                <li>Papad</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🍛 Main Course</h3>
+                            <ul>
+                                <li>Dal Tadka (Lentil Curry)</li>
+                                <li>Mix Vegetable Curry</li>
+                                <li>Chicken Curry / Paneer Butter Masala</li>
+                                <li>Seasonal Sabzi</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🥗 Salad & Sides</h3>
+                            <ul>
+                                <li>Fresh Green Salad</li>
+                                <li>Raita (Yogurt)</li>
+                                <li>Pickle</li>
+                                <li>Onion & Lemon</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🍨 Dessert</h3>
+                            <ul>
+                                <li>Sweet Dish (Changes Daily)</li>
+                                <li>Ice Cream (Weekends)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dietary-badges">
+                        <span class="badge veg">🟢 Vegetarian Available</span>
+                        <span class="badge non-veg">🔴 Non-Veg Available</span>
+                        <span class="badge special">⭐ Special Thali on Sundays</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dinner Menu -->
+            <div class="menu-content" id="dinner-menu">
+                <div class="menu-card">
+                    <div class="menu-header">
+                        <h2>🌙 Dinner</h2>
+                        <div class="menu-time">
+                            <span class="label">Serving Time</span>
+                            <span class="time">7:00 PM - 9:30 PM</span>
+                        </div>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-category">
+                            <h3>🍚 Rice & Breads</h3>
+                            <ul>
+                                <li>Jeera Rice / Plain Rice</li>
+                                <li>Roti / Chapati (5 pcs)</li>
+                                <li>Naan (On Special Days)</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🍛 Main Course</h3>
+                            <ul>
+                                <li>Dal Fry</li>
+                                <li>Mixed Vegetable Curry</li>
+                                <li>Fish Curry / Egg Curry / Soya Chunks</li>
+                                <li>Seasonal Vegetable</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🥗 Salad & Accompaniments</h3>
+                            <ul>
+                                <li>Fresh Salad</li>
+                                <li>Curd / Raita</li>
+                                <li>Pickle</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>🍮 Dessert</h3>
+                            <ul>
+                                <li>Fruit Custard</li>
+                                <li>Kheer (Rice Pudding - Thursdays)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="dietary-badges">
+                        <span class="badge veg">🟢 Vegetarian Available</span>
+                        <span class="badge non-veg">🔴 Non-Veg Available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Preview -->
+    <section class="weekly-menu">
+        <div class="container">
+            <h2 class="section-title">This Week's Special Menu</h2>
+            <div class="weekly-grid">
+                <div class="day-card today">
+                    <span class="day-label">TODAY</span>
+                    <h3>Monday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: Chole Bhature</h4>
+                        <p>North Indian special with spicy chickpea curry and fluffy fried bread</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>Tuesday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: Biryani</h4>
+                        <p>Fragrant rice with vegetables/chicken, raita, and salad</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>Wednesday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: South Indian</h4>
+                        <p>Dosa, Idli, Sambhar, and Coconut Chutney</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>Thursday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: Rajma Chawal</h4>
+                        <p>Kidney beans curry with steamed rice - comfort food!</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>Friday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: Fish Fry</h4>
+                        <p>Crispy fried fish with lemon rice and pickle</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>Saturday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: Chinese Cuisine</h4>
+                        <p>Fried rice, manchurian, and noodles</p>
+                    </div>
+                </div>
+                <div class="day-card">
+                    <h3>Sunday</h3>
+                    <div class="meal-preview">
+                        <h4>Special: Grand Thali</h4>
+                        <p>Complete special thali with 8+ items and dessert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Info -->
+    <section class="info-section">
+        <div class="container">
+            <h2 class="section-title">Mess Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🍽️ Dining Rules</h3>
+                    <ul>
+                        <li>Arrive within serving hours</li>
+                        <li>Maintain cleanliness in dining area</li>
+                        <li>No food waste policy</li>
+                        <li>Inform in advance for special dietary needs</li>
+                        <li>Take only what you can eat</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>⚠️ Important Notes</h3>
+                    <ul>
+                        <li>Menu may change based on availability</li>
+                        <li>Special requests 24 hours in advance</li>
+                        <li>Packed meals available for early departures</li>
+                        <li>Inform mess in-charge if skipping meals</li>
+                        <li>Outside food not allowed in mess</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>🌱 Dietary Options</h3>
+                    <ul>
+                        <li>Vegetarian meals available</li>
+                        <li>Non-vegetarian options</li>
+                        <li>Jain food (on request)</li>
+                        <li>Gluten-free options available</li>
+                        <li>Low-oil cooking on request</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>📞 Contact Mess</h3>
+                    <ul>
+                        <li>Mess Manager: +1 (123) 456-7892</li>
+                        <li>Kitchen: Extension 105</li>
+                        <li>Email: mess@hostalsystem.com</li>
+                        <li>Feedback box available in dining hall</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hostal System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Display today's date
+        function displayDate() {
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('todayDate').textContent = today.toLocaleDateString('en-US', options);
+        }
+
+        // Check if mess is currently open
+        function updateMessStatus() {
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            const currentTime = currentHour * 60 + currentMinute;
+
+            // Breakfast: 7:00 AM - 9:30 AM (420 - 570 minutes)
+            const breakfastStart = 7 * 60;
+            const breakfastEnd = 9 * 60 + 30;
+            
+            // Lunch: 12:00 PM - 2:30 PM (720 - 870 minutes)
+            const lunchStart = 12 * 60;
+            const lunchEnd = 14 * 60 + 30;
+            
+            // Dinner: 7:00 PM - 9:30 PM (1140 - 1290 minutes)
+            const dinnerStart = 19 * 60;
+            const dinnerEnd = 21 * 60 + 30;
+
+            // Update breakfast status
+            const breakfastStatus = document.getElementById('breakfastStatus');
+            if (currentTime >= breakfastStart && currentTime <= breakfastEnd) {
+                breakfastStatus.textContent = 'Open Now';
+                breakfastStatus.classList.add('open');
+                breakfastStatus.classList.remove('closed');
+            } else {
+                breakfastStatus.textContent = 'Closed';
+                breakfastStatus.classList.add('closed');
+                breakfastStatus.classList.remove('open');
+            }
+
+            // Update lunch status
+            const lunchStatus = document.getElementById('lunchStatus');
+            if (currentTime >= lunchStart && currentTime <= lunchEnd) {
+                lunchStatus.textContent = 'Open Now';
+                lunchStatus.classList.add('open');
+                lunchStatus.classList.remove('closed');
+            } else {
+                lunchStatus.textContent = 'Closed';
+                lunchStatus.classList.add('closed');
+                lunchStatus.classList.remove('open');
+            }
+
+            // Update dinner status
+            const dinnerStatus = document.getElementById('dinnerStatus');
+            if (currentTime >= dinnerStart && currentTime <= dinnerEnd) {
+                dinnerStatus.textContent = 'Open Now';
+                dinnerStatus.classList.add('open');
+                dinnerStatus.classList.remove('closed');
+            } else {
+                dinnerStatus.textContent = 'Closed';
+                dinnerStatus.classList.add('closed');
+                dinnerStatus.classList.remove('open');
+            }
+        }
+
+        // Menu tab switching
+        function showMenu(meal) {
+            // Remove active class from all tabs
+            document.querySelectorAll('.menu-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all menu contents
+            document.querySelectorAll('.menu-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+            
+            // Show corresponding menu
+            document.getElementById(meal + '-menu').classList.add('active');
+        }
+
+        // Initialize
+        displayDate();
+        updateMessStatus();
+        
+        // Update status every minute
+        setInterval(updateMessStatus, 60000);
+    </script>
+</body>
+</html>

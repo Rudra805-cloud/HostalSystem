@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms - Hostal System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .page-header {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .filter-section {
+            background: #f8f9fa;
+            padding: 2rem 0;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .filter-item label {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .filter-item select,
+        .filter-item input {
+            padding: 0.7rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            background: white;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .rooms-section {
+            padding: 5rem 0;
+        }
+
+        .rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .room-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .room-image {
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room-placeholder {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .room-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #667eea;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .room-info {
+            padding: 2rem;
+        }
+
+        .room-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .room-info h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .room-price {
+            font-size: 1.8rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .room-price span {
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        .room-info p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .room-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .room-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .room-feature-icon {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .room-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .room-button {
+            flex: 1;
+            padding: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .room-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .availability {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .availability.available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .availability.limited {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .availability.unavailable {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media screen and (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .rooms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-item {
+                width: 100%;
+            }
+
+            .room-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h2>Hostal System</h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="rooms.html" class="active">Rooms</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="mess.html">Mess</a></li>
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                <li><a href="signup.html" class="nav-signup">Sign Up</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Available Rooms</h1>
+            <p>Find the perfect room for your stay</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <form class="filter-container" id="filterForm">
+                <div class="filter-item">
+                    <label>Room Type</label>
+                    <select name="roomType" id="roomType">
+                        <option value="all">All Types</option>
+                        <option value="single">Single Room</option>
+                        <option value="double">Double Room</option>
+                        <option value="deluxe">Deluxe Room</option>
+                        <option value="suite">Suite</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>Price Range</label>
+                    <select name="priceRange" id="priceRange">
+                        <option value="all">All Prices</option>
+                        <option value="0-50">Under $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-150">$100 - $150</option>
+                        <option value="150+">$150+</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label>Availability</label>
+                    <select name="availability" id="availability">
+                        <option value="all">All</option>
+                        <option value="available">Available</option>
+                        <option value="limited">Limited</option>
+                    </select>
+                </div>
+                <button type="button" class="filter-btn" onclick="filterRooms()">Apply Filters</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section">
+        <div class="container">
+            <div class="rooms-grid" id="roomsGrid">
+                <!-- Single Room 1 -->
+                <div class="room-card" data-type="single" data-price="50" data-availability="available">
+                    <div class="room-image">
+                        <div class="room-placeholder">Single Room</div>
+                        <span class="room-badge">Popular</span>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-header">
+                            <div>
+                                <h3>Single Room</h3>
+                                <span class="availability available">Available</span>
+                            </div>
+                            <div class="room-price">$50<span>/month</span></div>
+                        </div>
+                        <p>Perfect for solo travelers and students. Cozy room with all essential amenities.</p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="room-feature-icon">👤</span>
+                                <span>1 Person</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛏️</span>
+                                <span>Single Bed</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">📶</span>
+                                <span>WiFi</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">❄️</span>
+                                <span>AC</span>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="room-button btn-primary" onclick="bookRoom('Single Room')">Book Now</button>
+                            <button class="room-button btn-secondary" onclick="viewDetails('Single Room')">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Double Room 1 -->
+                <div class="room-card" data-type="double" data-price="80" data-availability="available">
+                    <div class="room-image">
+                        <div class="room-placeholder">Double Room</div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-header">
+                            <div>
+                                <h3>Double Room</h3>
+                                <span class="availability available">Available</span>
+                            </div>
+                            <div class="room-price">$80<span>/month</span></div>
+                        </div>
+                        <p>Ideal for sharing with a friend. Spacious room with comfortable amenities.</p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="room-feature-icon">👥</span>
+                                <span>2 Persons</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛏️</span>
+                                <span>Twin Beds</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">📶</span>
+                                <span>WiFi</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🚿</span>
+                                <span>Bathroom</span>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="room-button btn-primary" onclick="bookRoom('Double Room')">Book Now</button>
+                            <button class="room-button btn-secondary" onclick="viewDetails('Double Room')">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deluxe Room 1 -->
+                <div class="room-card" data-type="deluxe" data-price="120" data-availability="limited">
+                    <div class="room-image">
+                        <div class="room-placeholder">Deluxe Room</div>
+                        <span class="room-badge">Premium</span>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-header">
+                            <div>
+                                <h3>Deluxe Room</h3>
+                                <span class="availability limited">2 Left</span>
+                            </div>
+                            <div class="room-price">$120<span>/month</span></div>
+                        </div>
+                        <p>Premium comfort with extra space and luxury amenities.</p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="room-feature-icon">👤</span>
+                                <span>1-2 Persons</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛏️</span>
+                                <span>Queen Bed</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">❄️</span>
+                                <span>AC</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">📺</span>
+                                <span>TV</span>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="room-button btn-primary" onclick="bookRoom('Deluxe Room')">Book Now</button>
+                            <button class="room-button btn-secondary" onclick="viewDetails('Deluxe Room')">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suite Room -->
+                <div class="room-card" data-type="suite" data-price="180" data-availability="available">
+                    <div class="room-image">
+                        <div class="room-placeholder">Suite Room</div>
+                        <span class="room-badge">Luxury</span>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-header">
+                            <div>
+                                <h3>Suite Room</h3>
+                                <span class="availability available">Available</span>
+                            </div>
+                            <div class="room-price">$180<span>/month</span></div>
+                        </div>
+                        <p>Luxurious suite with separate living area and premium facilities.</p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="room-feature-icon">👥</span>
+                                <span>2 Persons</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛏️</span>
+                                <span>King Bed</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛋️</span>
+                                <span>Living Area</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🍽️</span>
+                                <span>Kitchenette</span>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="room-button btn-primary" onclick="bookRoom('Suite Room')">Book Now</button>
+                            <button class="room-button btn-secondary" onclick="viewDetails('Suite Room')">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Single Room -->
+                <div class="room-card" data-type="single" data-price="45" data-availability="available">
+                    <div class="room-image">
+                        <div class="room-placeholder">Economy Single</div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-header">
+                            <div>
+                                <h3>Economy Single</h3>
+                                <span class="availability available">Available</span>
+                            </div>
+                            <div class="room-price">$45<span>/month</span></div>
+                        </div>
+                        <p>Budget-friendly option with essential amenities for comfortable living.</p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="room-feature-icon">👤</span>
+                                <span>1 Person</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛏️</span>
+                                <span>Single Bed</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">📶</span>
+                                <span>WiFi</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🪑</span>
+                                <span>Study Desk</span>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="room-button btn-primary" onclick="bookRoom('Economy Single')">Book Now</button>
+                            <button class="room-button btn-secondary" onclick="viewDetails('Economy Single')">Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Double Room -->
+                <div class="room-card" data-type="double" data-price="90" data-availability="limited">
+                    <div class="room-image">
+                        <div class="room-placeholder">Premium Double</div>
+                    </div>
+                    <div class="room-info">
+                        <div class="room-header">
+                            <div>
+                                <h3>Premium Double</h3>
+                                <span class="availability limited">1 Left</span>
+                            </div>
+                            <div class="room-price">$90<span>/month</span></div>
+                        </div>
+                        <p>Upgraded double room with enhanced comfort and modern amenities.</p>
+                        <div class="room-features">
+                            <div class="room-feature">
+                                <span class="room-feature-icon">👥</span>
+                                <span>2 Persons</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🛏️</span>
+                                <span>Twin Beds</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">❄️</span>
+                                <span>AC</span>
+                            </div>
+                            <div class="room-feature">
+                                <span class="room-feature-icon">🚿</span>
+                                <span>Private Bath</span>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <button class="room-button btn-primary" onclick="bookRoom('Premium Double')">Book Now</button>
+                            <button class="room-button btn-secondary" onclick="viewDetails('Premium Double')">Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Need Help Choosing?</h2>
+            <p>Contact our team for personalized room recommendations</p>
+            <a href="index.html#contact" class="cta-btn">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Hostal System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function filterRooms() {
+            const roomType = document.getElementById('roomType').value;
+            const priceRange = document.getElementById('priceRange').value;
+            const availability = document.getElementById('availability').value;
+            
+            const rooms = document.querySelectorAll('.room-card');
+            
+            rooms.forEach(room => {
+                let showRoom = true;
+                
+                // Filter by room type
+                if (roomType !== 'all' && room.dataset.type !== roomType) {
+                    showRoom = false;
+                }
+                
+                // Filter by price range
+                if (priceRange !== 'all') {
+                    const price = parseInt(room.dataset.price);
+                    const [min, max] = priceRange.split('-').map(p => p.replace('+', ''));
+                    
+                    if (priceRange.includes('+')) {
+                        if (price < parseInt(min)) showRoom = false;
+                    } else {
+                        if (price < parseInt(min) || price > parseInt(max)) showRoom = false;
+                    }
+                }
+                
+                // Filter by availability
+                if (availability !== 'all' && room.dataset.availability !== availability) {
+                    showRoom = false;
+                }
+                
+                room.style.display = showRoom ? 'block' : 'none';
+            });
+        }
+        
+        function bookRoom(roomName) {
+            const user = sessionStorage.getItem('user');
+            
+            if (user) {
+                alert(`Booking ${roomName}...\nYou will be redirected to the booking page.`);
+                // In a real app, redirect to booking page
+            } else {
+                const confirm = window.confirm(`Please login to book ${roomName}.\nWould you like to login now?`);
+                if (confirm) {
+                    window.location.href = 'login.html';
+                }
+            }
+        }
+        
+        function viewDetails(roomName) {
+            alert(`Viewing detailed information for ${roomName}...\nDetailed room page will be implemented.`);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+/* Theme Switcher Styles */
+.theme-switcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+}
+
+.theme-toggle-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    color: white;
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(20deg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+/* Dark Theme Styles */
+body.dark-theme {
+    background: #1a1a2e;
+    color: #eee;
+}
+
+body.dark-theme .navbar {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+body.dark-theme .hero {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+body.dark-theme .page-header {
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+}
+
+body.dark-theme section {
+    background: #1a1a2e;
+    color: #eee;
+}
+
+body.dark-theme .features {
+    background: #16213e;
+}
+
+body.dark-theme .feature-card {
+    background: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .feature-card h3 {
+    color: #bb86fc;
+}
+
+body.dark-theme .room-card {
+    background: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .room-info h3 {
+    color: #eee;
+}
+
+body.dark-theme .room-info p {
+    color: #ccc;
+}
+
+body.dark-theme .about {
+    background: #16213e;
+}
+
+body.dark-theme .about-content p {
+    color: #ccc;
+}
+
+body.dark-theme .contact {
+    background: #1a1a2e;
+}
+
+body.dark-theme .contact-form input,
+body.dark-theme .contact-form textarea {
+    background: #0f3460;
+    border-color: #16213e;
+    color: #eee;
+}
+
+body.dark-theme .contact-form input::placeholder,
+body.dark-theme .contact-form textarea::placeholder {
+    color: #999;
+}
+
+body.dark-theme .contact-info .info-item {
+    background: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .contact-info .info-item h4 {
+    color: #bb86fc;
+}
+
+body.dark-theme .contact-info .info-item p {
+    color: #ccc;
+}
+
+body.dark-theme .footer {
+    background: #0f0f1e;
+}
+
+body.dark-theme .section-title {
+    color: #eee;
+}
+
+body.dark-theme .value-card,
+body.dark-theme .amenity-card,
+body.dark-theme .info-card,
+body.dark-theme .team-member,
+body.dark-theme .day-card,
+body.dark-theme .faq-item,
+body.dark-theme .menu-category {
+    background: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .value-card h3,
+body.dark-theme .amenity-card h3,
+body.dark-theme .info-card h3,
+body.dark-theme .team-info h3,
+body.dark-theme .day-card h3 {
+    color: #bb86fc;
+}
+
+body.dark-theme .value-card p,
+body.dark-theme .amenity-card p,
+body.dark-theme .info-card p,
+body.dark-theme .info-card li,
+body.dark-theme .team-info p,
+body.dark-theme .day-card p,
+body.dark-theme .menu-category li {
+    color: #ccc;
+}
+
+body.dark-theme .story-section,
+body.dark-theme .mission-section,
+body.dark-theme .additional-features,
+body.dark-theme .menu-section,
+body.dark-theme .info-section,
+body.dark-theme .filter-section,
+body.dark-theme .faq-section {
+    background: #16213e;
+}
+
+body.dark-theme .story-content h3,
+body.dark-theme .mission-card h3,
+body.dark-theme .feature-content h2,
+body.dark-theme .menu-card h2,
+body.dark-theme .contact-info-section h2,
+body.dark-theme .contact-form-section h2,
+body.dark-theme .faq-question {
+    color: #bb86fc;
+}
+
+body.dark-theme .story-content p,
+body.dark-theme .mission-card p,
+body.dark-theme .feature-content p,
+body.dark-theme .feature-list li,
+body.dark-theme .contact-info-section p,
+body.dark-theme .contact-form-section p {
+    color: #ccc;
+}
+
+body.dark-theme .mission-card {
+    background: #0f3460;
+    border-left-color: #bb86fc;
+}
+
+body.dark-theme .team-section {
+    background: #16213e;
+}
+
+body.dark-theme .menu-card {
+    background: #0f3460;
+}
+
+body.dark-theme .menu-tab {
+    background: #0f3460;
+    border-color: #16213e;
+    color: #ccc;
+}
+
+body.dark-theme .menu-tab.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+body.dark-theme .menu-time {
+    background: #16213e;
+}
+
+body.dark-theme .menu-time .time {
+    color: #eee;
+}
+
+body.dark-theme .timing-overview {
+    background: #1a1a2e;
+}
+
+body.dark-theme .contact-section {
+    background: #1a1a2e;
+}
+
+body.dark-theme .info-card {
+    background: #0f3460;
+}
+
+body.dark-theme .info-card h3 {
+    color: #bb86fc;
+}
+
+body.dark-theme .info-card p,
+body.dark-theme .info-card a {
+    color: #ccc;
+}
+
+body.dark-theme .info-card a:hover {
+    color: #bb86fc;
+}
+
+body.dark-theme .contact-form input,
+body.dark-theme .contact-form textarea,
+body.dark-theme .contact-form select {
+    background: #16213e;
+    border-color: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .filter-item select,
+body.dark-theme .filter-item input {
+    background: #0f3460;
+    border-color: #16213e;
+    color: #eee;
+}
+
+body.dark-theme .rooms-section,
+body.dark-theme .features-detailed,
+body.dark-theme .weekly-menu,
+body.dark-theme .values-section,
+body.dark-theme .about-intro {
+    background: #1a1a2e;
+}
+
+body.dark-theme .about-content h2 {
+    color: #bb86fc;
+}
+
+body.dark-theme .room-feature {
+    color: #ccc;
+}
+
+body.dark-theme .faq-question:hover {
+    background: #16213e;
+}
+
+body.dark-theme .faq-answer-content {
+    color: #ccc;
+}
+
+body.dark-theme .day-card.today {
+    background: linear-gradient(135deg, rgba(187, 134, 252, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
+    border-color: #bb86fc;
+}
+
+body.dark-theme .meal-preview h4 {
+    color: #eee;
+}
+
+body.dark-theme .auth-card {
+    background: #0f3460;
+}
+
+body.dark-theme .auth-header h1,
+body.dark-theme .auth-header p {
+    color: #eee;
+}
+
+body.dark-theme .form-group label {
+    color: #ccc;
+}
+
+body.dark-theme .form-group input {
+    background: #16213e;
+    border-color: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .form-group input:focus {
+    background: #1a1a2e;
+    border-color: #bb86fc;
+}
+
+body.dark-theme .social-button {
+    background: #16213e;
+    border-color: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .auth-footer {
+    color: #ccc;
+}
+
+body.dark-theme .divider span {
+    background: #0f3460;
+    color: #999;
+}
+
+body.dark-theme .checkbox-label {
+    color: #ccc;
+}
+
+body.dark-theme .remember-me {
+    color: #ccc;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .theme-switcher {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .theme-toggle-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+}

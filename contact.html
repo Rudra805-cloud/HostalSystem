@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Hostal System</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="theme-switcher.css">
     <style>
         .page-header {
             padding: 150px 0 80px;
@@ -580,7 +581,15 @@
         </div>
     </footer>
 
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Dark/Light Mode">
+            <span id="theme-icon">🌙</span>
+        </button>
+    </div>
+
     <script src="script.js"></script>
+    <script src="theme-switcher.js"></script>
     <script>
         // Contact Form Submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {

@@ -219,12 +219,19 @@
             font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
-            display: block;
+            display: inline-block;
+        }
+
+        .stat-plus {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
         }
 
         .stat-label {
             font-size: 1.2rem;
             opacity: 0.9;
+            display: block;
         }
 
         .mission-section {
@@ -445,19 +452,19 @@
             <h2 class="section-title">Our Achievements</h2>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <span class="stat-number">10+</span>
+                    <span class="stat-number" data-target="10">10</span><span class="stat-plus">+</span>
                     <span class="stat-label">Years of Service</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">2000+</span>
+                    <span class="stat-number" data-target="2000">2000</span><span class="stat-plus">+</span>
                     <span class="stat-label">Happy Residents</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">50+</span>
+                    <span class="stat-number" data-target="50">50</span><span class="stat-plus">+</span>
                     <span class="stat-label">Rooms Available</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">98%</span>
+                    <span class="stat-number" data-target="98">98</span><span class="stat-plus">%</span>
                     <span class="stat-label">Satisfaction Rate</span>
                 </div>
             </div>
@@ -550,5 +557,64 @@
 
     <script src="js/script.js"></script>
     <script src="js/theme-switcher.js"></script>
+    <script>
+        // Animated Counter for Statistics
+        let animated = false;
+
+        function animateCounter(element, target) {
+            let current = 0;
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60 FPS
+            
+            element.textContent = '0'; // Start from 0
+            
+            const counter = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(counter);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        function startAnimation() {
+            if (animated) return;
+            animated = true;
+            
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                animateCounter(stat, target);
+            });
+        }
+
+        // Check if stats section is visible
+        function checkIfVisible() {
+            const statsSection = document.querySelector('.stats-section');
+            if (!statsSection) return;
+            
+            const rect = statsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            // Check if at least 30% of the section is visible
+            const isVisible = rect.top <= windowHeight * 0.8 && rect.bottom >= windowHeight * 0.2;
+            
+            if (isVisible && !animated) {
+                startAnimation();
+            }
+        }
+
+        // Run when page loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', checkIfVisible);
+        } else {
+            checkIfVisible();
+        }
+        
+        // Run on scroll
+        window.addEventListener('scroll', checkIfVisible);
+    </script>
 </body>
 </html>

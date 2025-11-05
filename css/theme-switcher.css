@@ -346,6 +346,71 @@ body.dark-theme .auth-sidebar {
     background: #16213e;
 }
 
+body.dark-theme .timing-card {
+    background: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .timing-card h3 {
+    color: #bb86fc;
+}
+
+body.dark-theme .timing-card p {
+    color: #ccc;
+}
+
+body.dark-theme .timing-card .time {
+    color: #bb86fc;
+    border-top: 2px solid #16213e;
+}
+
+body.dark-theme .timing-card .status {
+    background: #16213e;
+    color: #eee;
+}
+
+body.dark-theme .menu-card {
+    background: #0f3460;
+    color: #eee;
+}
+
+body.dark-theme .menu-header {
+    border-bottom: 3px solid #bb86fc;
+}
+
+body.dark-theme .menu-header h2 {
+    color: #bb86fc;
+}
+
+body.dark-theme .menu-time {
+    background: #16213e;
+}
+
+body.dark-theme .menu-time .label {
+    color: #ccc;
+}
+
+body.dark-theme .menu-time .time {
+    color: #eee;
+}
+
+body.dark-theme .menu-category {
+    background: #16213e;
+    border-left: 5px solid #bb86fc;
+}
+
+body.dark-theme .menu-category h3 {
+    color: #bb86fc;
+}
+
+body.dark-theme .menu-category li {
+    color: #ccc;
+}
+
+body.dark-theme .timing-card-content {
+    color: #eee;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .theme-switcher {

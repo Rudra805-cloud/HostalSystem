@@ -46,18 +46,28 @@
         }
 
         .timing-card {
-            background: #667eea;
-            padding: 2rem;
+            background: white;
             border-radius: 15px;
-            color: white;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
         }
 
         .timing-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .timing-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .timing-card-content {
+            padding: 2rem;
+            text-align: center;
         }
 
         .timing-icon {
@@ -68,6 +78,11 @@
         .timing-card h3 {
             font-size: 1.8rem;
             margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .timing-card p {
+            color: #666;
         }
 
         .timing-card .time {
@@ -75,24 +90,28 @@
             font-weight: 600;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: 2px solid #e0e0e0;
+            color: #667eea;
         }
 
         .timing-card .status {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.3rem 0.8rem;
+            background: #f8f9fa;
+            padding: 0.5rem 1rem;
             border-radius: 15px;
             font-size: 0.9rem;
             display: inline-block;
             margin-top: 0.5rem;
+            font-weight: 600;
         }
 
         .timing-card .status.open {
             background: #2ed573;
+            color: white;
         }
 
         .timing-card .status.closed {
             background: #ff4757;
+            color: white;
         }
 
         .menu-section {
@@ -446,25 +465,34 @@
         <div class="container">
             <div class="timing-grid">
                 <div class="timing-card">
-                    <div class="timing-icon">🌅</div>
-                    <h3>Breakfast</h3>
-                    <p>Start your day right</p>
-                    <div class="time">7:00 AM - 9:30 AM</div>
-                    <div class="status" id="breakfastStatus">Closed</div>
+                    <img src="images/breakfast.png" alt="Breakfast" class="timing-card-image">
+                    <div class="timing-card-content">
+                        <div class="timing-icon">🌅</div>
+                        <h3>Breakfast</h3>
+                        <p>Start your day right</p>
+                        <div class="time">7:00 AM - 9:30 AM</div>
+                        <div class="status" id="breakfastStatus">Closed</div>
+                    </div>
                 </div>
                 <div class="timing-card">
-                    <div class="timing-icon">☀️</div>
-                    <h3>Lunch</h3>
-                    <p>Healthy midday meal</p>
-                    <div class="time">12:00 PM - 2:30 PM</div>
-                    <div class="status" id="lunchStatus">Closed</div>
+                    <img src="images/lunch.png" alt="Lunch" class="timing-card-image">
+                    <div class="timing-card-content">
+                        <div class="timing-icon">☀️</div>
+                        <h3>Lunch</h3>
+                        <p>Healthy midday meal</p>
+                        <div class="time">12:00 PM - 2:30 PM</div>
+                        <div class="status" id="lunchStatus">Closed</div>
+                    </div>
                 </div>
                 <div class="timing-card">
-                    <div class="timing-icon">🌙</div>
-                    <h3>Dinner</h3>
-                    <p>End your day deliciously</p>
-                    <div class="time">7:00 PM - 9:30 PM</div>
-                    <div class="status" id="dinnerStatus">Closed</div>
+                    <img src="images/dinner.png" alt="Dinner" class="timing-card-image">
+                    <div class="timing-card-content">
+                        <div class="timing-icon">🌙</div>
+                        <h3>Dinner</h3>
+                        <p>End your day deliciously</p>
+                        <div class="time">7:00 PM - 9:30 PM</div>
+                        <div class="status" id="dinnerStatus">Closed</div>
+                    </div>
                 </div>
             </div>
         </div>

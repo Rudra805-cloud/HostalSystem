@@ -10,7 +10,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #667eea;
     border: none;
     cursor: pointer;
     display: flex;
@@ -38,15 +38,15 @@ body.dark-theme {
 }
 
 body.dark-theme .navbar {
-    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+    background: #16213e;
 }
 
 body.dark-theme .hero {
-    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+    background: #16213e;
 }
 
 body.dark-theme .page-header {
-    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+    background: #16213e;
 }
 
 body.dark-theme section {
@@ -54,8 +54,24 @@ body.dark-theme section {
     color: #eee;
 }
 
-body.dark-theme .features {
-    background: #16213e;
+body.dark-theme .features,
+body.dark-theme .story-section,
+body.dark-theme .mission-section,
+body.dark-theme .additional-features,
+body.dark-theme .menu-section,
+body.dark-theme .info-section,
+body.dark-theme .filter-section,
+body.dark-theme .faq-section,
+body.dark-theme .about,
+body.dark-theme .features-detailed,
+body.dark-theme .weekly-menu,
+body.dark-theme .values-section,
+body.dark-theme .about-intro,
+body.dark-theme .rooms-section,
+body.dark-theme .team-section,
+body.dark-theme .contact-section,
+body.dark-theme .timing-overview {
+    background: #1a1a2e;
 }
 
 body.dark-theme .feature-card {
@@ -131,7 +147,12 @@ body.dark-theme .info-card,
 body.dark-theme .team-member,
 body.dark-theme .day-card,
 body.dark-theme .faq-item,
-body.dark-theme .menu-category {
+body.dark-theme .menu-category,
+body.dark-theme .feature-card,
+body.dark-theme .room-card,
+body.dark-theme .contact-form input,
+body.dark-theme .contact-form textarea,
+body.dark-theme .contact-form select {
     background: #0f3460;
     color: #eee;
 }
@@ -183,17 +204,12 @@ body.dark-theme .contact-form-section p {
     color: #ccc;
 }
 
-body.dark-theme .mission-card {
+body.dark-theme .mission-card,
+body.dark-theme .story-section,
+body.dark-theme .menu-card,
+body.dark-theme .info-card {
     background: #0f3460;
     border-left-color: #bb86fc;
-}
-
-body.dark-theme .team-section {
-    background: #16213e;
-}
-
-body.dark-theme .menu-card {
-    background: #0f3460;
 }
 
 body.dark-theme .menu-tab {
@@ -203,7 +219,7 @@ body.dark-theme .menu-tab {
 }
 
 body.dark-theme .menu-tab.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #667eea;
     color: white;
 }
 
@@ -242,25 +258,12 @@ body.dark-theme .info-card a:hover {
 
 body.dark-theme .contact-form input,
 body.dark-theme .contact-form textarea,
-body.dark-theme .contact-form select {
+body.dark-theme .contact-form select,
+body.dark-theme .filter-item select,
+body.dark-theme .filter-item input {
     background: #16213e;
     border-color: #0f3460;
     color: #eee;
-}
-
-body.dark-theme .filter-item select,
-body.dark-theme .filter-item input {
-    background: #0f3460;
-    border-color: #16213e;
-    color: #eee;
-}
-
-body.dark-theme .rooms-section,
-body.dark-theme .features-detailed,
-body.dark-theme .weekly-menu,
-body.dark-theme .values-section,
-body.dark-theme .about-intro {
-    background: #1a1a2e;
 }
 
 body.dark-theme .about-content h2 {
@@ -280,7 +283,7 @@ body.dark-theme .faq-answer-content {
 }
 
 body.dark-theme .day-card.today {
-    background: linear-gradient(135deg, rgba(187, 134, 252, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
+    background: rgba(187, 134, 252, 0.2);
     border-color: #bb86fc;
 }
 
@@ -289,7 +292,7 @@ body.dark-theme .meal-preview h4 {
 }
 
 body.dark-theme .auth-card {
-    background: #0f3460;
+    background: #1a1a2e;
 }
 
 body.dark-theme .auth-header h1,
@@ -302,19 +305,19 @@ body.dark-theme .form-group label {
 }
 
 body.dark-theme .form-group input {
-    background: #16213e;
-    border-color: #0f3460;
+    background: #0f3460;
+    border-color: #16213e;
     color: #eee;
 }
 
 body.dark-theme .form-group input:focus {
-    background: #1a1a2e;
+    background: #16213e;
     border-color: #bb86fc;
 }
 
 body.dark-theme .social-button {
-    background: #16213e;
-    border-color: #0f3460;
+    background: #0f3460;
+    border-color: #16213e;
     color: #eee;
 }
 
@@ -323,7 +326,7 @@ body.dark-theme .auth-footer {
 }
 
 body.dark-theme .divider span {
-    background: #0f3460;
+    background: #1a1a2e;
     color: #999;
 }
 
@@ -333,6 +336,14 @@ body.dark-theme .checkbox-label {
 
 body.dark-theme .remember-me {
     color: #ccc;
+}
+
+body.dark-theme .auth-container {
+    background: #1a1a2e;
+}
+
+body.dark-theme .auth-sidebar {
+    background: #16213e;
 }
 
 /* Responsive adjustments */

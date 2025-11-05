@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #f8f9fa;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -220,7 +220,7 @@ body {
 .auth-button {
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #667eea;
     color: white;
     border: none;
     border-radius: 8px;
@@ -232,6 +232,7 @@ body {
 }
 
 .auth-button:hover {
+    background: #5568d3;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
 }
@@ -333,7 +334,7 @@ body {
 
 /* Auth Sidebar */
 .auth-sidebar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #667eea;
     padding: 3rem;
     display: flex;
     align-items: center;
@@ -407,6 +408,7 @@ body {
 .back-home:hover {
     background: white;
     color: #667eea;
+    transform: translateX(5px);
 }
 
 /* Responsive Design */
